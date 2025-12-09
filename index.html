@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة عقود الاعتماد الأكاديمي</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1 class="main-title">نظام إدارة عقود الاعتماد الأكاديمي</h1>
+        </header>
+
+        <!-- Statistics Section -->
+        <section class="statistics-section">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3>إجمالي العقود</h3>
+                    <p class="stat-number" id="totalContracts">445</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏛️</div>
+                <div class="stat-content">
+                    <h3>عدد الجامعات</h3>
+                    <p class="stat-number" id="totalUniversities">39</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-content">
+                    <h3>عدد الإدارات</h3>
+                    <p class="stat-number" id="totalDepartments">5</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- University Statistics Section -->
+        <section class="universities-section">
+            <h2 class="section-title">إحصائيات الجامعات</h2>
+            <div class="universities-grid" id="universitiesGrid"></div>
+        </section>
+
+        <!-- Department Statistics Section -->
+        <section class="departments-section">
+            <h2 class="section-title">إحصائيات الإدارات</h2>
+            <div class="departments-grid" id="departmentsGrid"></div>
+        </section>
+
+        <!-- Tabs Navigation -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="home">
+                <span class="tab-icon">🏠</span>
+                <span class="tab-text">الصفحة الرئيسية</span>
+            </button>
+            <button class="tab-btn" data-tab="scheduled">
+                <span class="tab-icon">✅</span>
+                <span class="tab-text">تم جدولة الزيارة</span>
+                <span class="badge" id="scheduledCount">175</span>
+            </button>
+            <button class="tab-btn" data-tab="not-scheduled">
+                <span class="tab-icon">⚠️</span>
+                <span class="tab-text">لم تتم الجدولة - متأخر</span>
+                <span class="badge badge-warning" id="notScheduledCount">42</span>
+            </button>
+            <button class="tab-btn" data-tab="undefined">
+                <span class="tab-icon">❓</span>
+                <span class="tab-text">غير محددة</span>
+                <span class="badge badge-secondary" id="undefinedCount">228</span>
+            </button>
+        </nav>
+
+        <!-- Home Tab Content -->
+        <div class="tab-content active" id="homeTab">
+            <div class="welcome-section">
+                <h2>مرحباً بك في نظام إدارة عقود الاعتماد الأكاديمي</h2>
+                <p>هذا النظام يوفر لك إمكانية متابعة وإدارة عقود الاعتماد الأكاديمي للجامعات المختلفة</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>متابعة شاملة</h3>
+                        <p>تتبع حالة جميع العقود والزيارات</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>بحث متقدم</h3>
+                        <p>فلترة حسب الجامعة والإدارة والحالة</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>إحصائيات دقيقة</h3>
+                        <p>تقارير تفصيلية ومؤشرات أداء</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>تحديث مستمر</h3>
+                        <p>بيانات محدثة بشكل دوري</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scheduled Tab Content -->
+        <div class="tab-content" id="scheduledTab">
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="searchScheduled" placeholder="🔍 ابحث في البرامج...">
+                </div>
+                <div class="filters-row">
+                    <select id="universityFilterScheduled" class="filter-select">
+                        <option value="">جميع الجامعات</option>
+                    </select>
+                    <select id="departmentFilterScheduled" class="filter-select">
+                        <option value="">جميع الإدارات</option>
+                    </select>
+                    <select id="progressFilterScheduled" class="filter-select">
+                        <option value="">جميع نسب الإنجاز</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-info">
+                <p>عدد النتائج: <span id="scheduledResults">175</span></p>
+            </div>
+            <div class="contracts-grid" id="scheduledContracts"></div>
+        </div>
+
+        <!-- Not Scheduled Tab Content -->
+        <div class="tab-content" id="notScheduledTab">
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="searchNotScheduled" placeholder="🔍 ابحث في البرامج...">
+                </div>
+                <div class="filters-row">
+                    <select id="universityFilterNotScheduled" class="filter-select">
+                        <option value="">جميع الجامعات</option>
+                    </select>
+                    <select id="departmentFilterNotScheduled" class="filter-select">
+                        <option value="">جميع الإدارات</option>
+                    </select>
+                    <select id="progressFilterNotScheduled" class="filter-select">
+                        <option value="">جميع نسب الإنجاز</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-info">
+                <p>عدد النتائج: <span id="notScheduledResults">42</span></p>
+            </div>
+            <div class="contracts-grid" id="notScheduledContracts"></div>
+        </div>
+
+        <!-- Undefined Tab Content -->
+        <div class="tab-content" id="undefinedTab">
+            <div class="filters-section">
+                <div class="search-box">
+                    <input type="text" id="searchUndefined" placeholder="🔍 ابحث في البرامج...">
+                </div>
+                <div class="filters-row">
+                    <select id="universityFilterUndefined" class="filter-select">
+                        <option value="">جميع الجامعات</option>
+                    </select>
+                    <select id="departmentFilterUndefined" class="filter-select">
+                        <option value="">جميع الإدارات</option>
+                    </select>
+                    <select id="progressFilterUndefined" class="filter-select">
+                        <option value="">جميع نسب الإنجاز</option>
+                    </select>
+                </div>
+            </div>
+            <div class="results-info">
+                <p>عدد النتائج: <span id="undefinedResults">228</span></p>
+            </div>
+            <div class="contracts-grid" id="undefinedContracts"></div>
+        </div>
+    </div>
+
+    <script src="contracts_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
